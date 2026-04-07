@@ -1,0 +1,8 @@
+{
+  "name": "SkillLink",
+  "description": "A college collaboration and skill-sharing platform for students to connect, showcase skills, and collaborate on projects.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

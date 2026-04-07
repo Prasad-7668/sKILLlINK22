@@ -1,0 +1,69 @@
+{
+  "entities": {
+    "users": {
+      "title": "User Profile",
+      "description": "Stores student profile information and skills.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string", "format": "uri" },
+        "role": { "type": "string", "enum": ["student", "admin"] },
+        "bio": { "type": "string" },
+        "college": { "type": "string" },
+        "branch": { "type": "string" },
+        "skills": { "type": "array", "items": { "type": "string" } },
+        "availability": { "type": "string", "enum": ["open", "busy"] },
+        "contributionScore": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "displayName", "role"]
+    },
+    "posts": {
+      "title": "Social Post",
+      "description": "Stores knowledge sharing posts and updates.",
+      "type": "object",
+      "properties": {
+        "authorId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorPhoto": { "type": "string" },
+        "content": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "likes": { "type": "array", "items": { "type": "string" } },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["authorId", "content", "createdAt"]
+    },
+    "teams": {
+      "title": "Collaboration Team",
+      "description": "Stores project teams and collaboration details.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "ownerId": { "type": "string" },
+        "members": { "type": "array", "items": { "type": "string" } },
+        "lookingFor": { "type": "array", "items": { "type": "string" } },
+        "status": { "type": "string", "enum": ["active", "completed"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "ownerId", "members"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "users",
+      "description": "User profile documents"
+    },
+    "posts/{postId}": {
+      "schema": "posts",
+      "description": "Social feed posts"
+    },
+    "teams/{teamId}": {
+      "schema": "teams",
+      "description": "Collaboration teams"
+    }
+  }
+}
